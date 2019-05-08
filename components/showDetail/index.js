@@ -1,7 +1,7 @@
 import React from 'react'
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native'
 
-const MovieDetail = ({movie}) => {
+const ShowDetail = ({movie}) => {
   const htmlRegex = /(<([^>]+)>)/ig
   return (
     <ScrollView>
@@ -18,7 +18,7 @@ const MovieDetail = ({movie}) => {
   )
 }
 
-export default MovieDetail
+export default ShowDetail
 
 const styles = StyleSheet.create({
   detailsContainer: {

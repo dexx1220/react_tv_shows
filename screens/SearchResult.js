@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import MovieDetail from '../components/movieDetail/index'
+import ShowDetail from '../components/showDetail/index'
 
 export default class SearchResultScreen extends Component {
   static navigationOptions = {
-    title: 'Movie Details'
+    title: 'Show Details'
   }
   
   render() {
@@ -13,7 +13,7 @@ export default class SearchResultScreen extends Component {
 
     return(
       <View>
-        <MovieDetail movie={movie} />
+        <ShowDetail movie={movie} />
       </View>
     )
   }

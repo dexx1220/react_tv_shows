@@ -10,7 +10,7 @@ export default class HomeScreen extends Component {
         <Text style={styles.welcome}>Welcome to React Native!</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Button
-          title="Search For Movies"
+          title="Search For Shows"
           onPress={() => navigation.navigate('Search')}
         />
       </View>

@@ -7,8 +7,8 @@ const DetailText = ({text}) => {
   )
 }
 
-const MovieCard = ({movie, handleTouch}) => {
-  const { genres, image, language, name, network, officialSite, status } = movie
+const ShowCard = ({show, handleTouch}) => {
+  const { genres, image, language, name, network, officialSite, status } = show
   return (
     <TouchableHighlight onPress={handleTouch}>
       <View style={styles.container}>
@@ -17,7 +17,9 @@ const MovieCard = ({movie, handleTouch}) => {
           <DetailText text={name} />
           <DetailText text={`Language: ${language}`} />
           <DetailText text={`Status: ${status}`} />
-          <DetailText text={`Network: ${network.name}`} />
+          {network &&
+            <DetailText text={`Network: ${network.name}`} />
+          }
           <DetailText text={`Official site: ${officialSite}`} />
           {!!genres.length &&
             <DetailText text={`Genres: ${genres.join(', ')}`} />
@@ -28,7 +30,7 @@ const MovieCard = ({movie, handleTouch}) => {
   )
 }
 
-export default MovieCard
+export default ShowCard
 
 const styles = StyleSheet.create({
   container: {

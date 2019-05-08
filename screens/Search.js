@@ -1,20 +1,29 @@
 import React, {Component} from 'react';
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
-import MovieCard from '../components/movieCard/index'
+import ShowCard from '../components/showCard/index'
 import axios from 'axios'
+
+const ITEMS_PER_PAGE = 50
 
 export default class SearchScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      movies: []
+      shows: [],
+      showsShown: [],
+      page: 1,
+      startIndex: 0
     }
   }
 
   componentDidMount() {
-    axios.get('http://api.tvmaze.com/shows?page=1')
+    const { startIndex } = this.state
+    axios.get(`http://api.tvmaze.com/shows?page=${this.state.page}`)
       .then((res) => {
-        this.setState({movies: res.data})
+        this.setState({
+          shows: res.data,
+          showsShown: res.data.splice(startIndex, 50)
+        })
       })
   }
 
@@ -23,13 +32,13 @@ export default class SearchScreen extends Component {
   }
 
   render() {
-    const { movies } = this.state
+    const { showsShown } = this.state
     return (
       <View style={styles.container}>
-        {!!movies.length && 
+        {!!showsShown.length && 
           <FlatList
-            data={movies.splice(0,10)}
-            renderItem={({item}) => <MovieCard movie={item} handleTouch={() => this.handleTouch(item)} />}
+            data={showsShown}
+            renderItem={({item}) => <ShowCard show={item} handleTouch={() => this.handleTouch(item)} />}
             keyExtractor={item => item.id.toString()}
           />
         }
