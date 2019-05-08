@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, FlatList, StyleSheet, Text, View} from 'react-native';
-import MovieCard from '../components/movieCard/movieCard'
+import MovieCard from '../components/movieCard/index'
 import axios from 'axios'
 
 export default class SearchScreen extends Component {
@@ -18,6 +18,10 @@ export default class SearchScreen extends Component {
       })
   }
 
+  handleTouch = (movie) => {
+    this.props.navigation.navigate('SearchResult', { movie })
+  }
+
   render() {
     const { movies } = this.state
     return (
@@ -25,21 +29,21 @@ export default class SearchScreen extends Component {
         {!!movies.length && 
           <FlatList
             data={movies.splice(0,10)}
-            renderItem={({item}) => <MovieCard movie={item} />}
-            keyExtrator={item => item.id}
-
+            renderItem={({item}) => <MovieCard movie={item} handleTouch={() => this.handleTouch(item)} />}
+            keyExtractor={item => item.id.toString()}
           />
         }
-        <Button
-          title='Back to Home'
-          onPress={() => this.props.navigation.goBack()}
-        />
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    paddingTop: 15,
+    paddingBottom: 15,
+    paddingLeft: 45 ,
+    paddingRight: 45
+  },
   title: {}
 })
