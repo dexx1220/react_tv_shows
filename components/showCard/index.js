@@ -12,7 +12,9 @@ const ShowCard = ({show, handleTouch}) => {
   return (
     <TouchableHighlight onPress={handleTouch}>
       <View style={styles.container}>
-        <Image source={{uri: image.medium }} style={styles.image} />
+        {image &&
+          <Image source={{uri: image.medium }} style={styles.image} />
+        }
         <View style={styles.details}>
           <DetailText text={name} />
           <DetailText text={`Language: ${language}`} />
